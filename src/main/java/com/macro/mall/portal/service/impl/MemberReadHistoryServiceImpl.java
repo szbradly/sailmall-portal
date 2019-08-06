@@ -22,7 +22,7 @@ public class MemberReadHistoryServiceImpl implements MemberReadHistoryService {
     public int create(MemberReadHistory memberReadHistory) {
         memberReadHistory.setId(null);
         memberReadHistory.setCreateTime(new Date());
-        
+         
         memberReadHistoryRepository.save(memberReadHistory);
         return 1;
     }
