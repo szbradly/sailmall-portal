@@ -4,8 +4,9 @@ target/
 # IDEA #
 .idea/
 *.iml
-
+*.class
 # Eclipse #
 .settings/
 .classpath
 .project
+.DS_Store
