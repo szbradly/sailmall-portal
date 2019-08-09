@@ -15,5 +15,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface MemberReadHistoryRepository extends MongoRepository<MemberReadHistory,String> {
     List<MemberReadHistory> findByMemberIdOrderByCreateTimeDesc(Long memberId);
     // Page <MemberReadHistory>findAllByPage
-    public Page<MemberReadHistory> findByShopAndMemberId(Integer shopId,Long memberId, Pageable pageable);
+    public Page<MemberReadHistory> findByShopIdAndMemberId(int shopId,int memberId, Pageable pageable);
 }

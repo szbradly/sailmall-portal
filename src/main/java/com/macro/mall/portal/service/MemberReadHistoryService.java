@@ -2,6 +2,8 @@ package com.macro.mall.portal.service;
 
 import com.macro.mall.portal.domain.MemberReadHistory;
 
+import org.springframework.data.domain.Page;
+
 import java.util.List;
 
 /**
@@ -22,5 +24,5 @@ public interface MemberReadHistoryService {
     /**
      * 获取用户浏览历史记录
      */
-    List<MemberReadHistory> list(Long memberId);
+    Page<MemberReadHistory> list(int shopId,int memberId,int pageNum,int pageSize);
 }

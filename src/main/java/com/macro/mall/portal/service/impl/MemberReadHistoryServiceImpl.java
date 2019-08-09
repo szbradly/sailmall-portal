@@ -1,14 +1,18 @@
 package com.macro.mall.portal.service.impl;
 
-import com.macro.mall.portal.domain.MemberReadHistory;
-import com.macro.mall.portal.repository.MemberReadHistoryRepository;
-import com.macro.mall.portal.service.MemberReadHistoryService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.macro.mall.portal.domain.MemberReadHistory;
+import com.macro.mall.portal.repository.MemberReadHistoryRepository;
+import com.macro.mall.portal.repository.SpringDataPageable;
+import com.macro.mall.portal.service.MemberReadHistoryService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 /**
  * 会员浏览记录管理Service实现类
@@ -40,7 +44,12 @@ public class MemberReadHistoryServiceImpl implements MemberReadHistoryService {
     }
 
     @Override
-    public List<MemberReadHistory> list(Long memberId) {
-        return memberReadHistoryRepository.findByMemberIdOrderByCreateTimeDesc(memberId);
+    public Page<MemberReadHistory> list(int shopId,int memberId ,int pageNum,int pageSize) {
+        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
+        SpringDataPageable pageable = new SpringDataPageable(); 
+        pageable.setPagenumber(pageNum); 
+        pageable.setPagesize(pageSize);
+        pageable.setSort(sort);
+        return memberReadHistoryRepository.findByShopIdAndMemberId(shopId,memberId,pageable);
     }
 }
