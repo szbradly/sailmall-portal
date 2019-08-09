@@ -25,7 +25,7 @@ public class MemberReadHistory {
     private String productSubTitle;
     private String productPrice;
     private Date createTime;
-
+    private int shopId;
     public String getId() {
         return id;
     }
@@ -105,4 +105,13 @@ public class MemberReadHistory {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    public int getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(int shopId) {
+        this.shopId = shopId;
+    }
+    
 }

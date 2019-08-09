@@ -16,6 +16,7 @@ public class MemberProductCollection {
     private Long memberId;
     private String memberNickname;
     private String memberIcon;
+    private Integer shopId;
     @Indexed
     private Long productId;
     private String productName;
@@ -102,5 +103,13 @@ public class MemberProductCollection {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
     }
 }

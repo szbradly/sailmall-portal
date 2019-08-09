@@ -18,6 +18,7 @@ public class MemberBrandAttention {
     private Long memberId;
     private String memberNickname;
     private String memberIcon;
+    private Integer shopId;
     @Indexed
     private Long brandId;
     private String brandName;
@@ -104,5 +105,13 @@ public class MemberBrandAttention {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public int getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(int shopId) {
+        this.shopId = shopId;
     }
 }
