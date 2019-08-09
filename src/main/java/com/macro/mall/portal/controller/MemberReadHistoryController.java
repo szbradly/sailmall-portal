@@ -49,7 +49,10 @@ public class MemberReadHistoryController {
     @ApiOperation("展示浏览记录")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<MemberReadHistory>> list(Long memberId) {
+    public CommonResult<List<MemberReadHistory>> list(@RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+    Long memberId
+    ){
         List<MemberReadHistory> memberReadHistoryList = memberReadHistoryService.list(memberId);
         return CommonResult.success(memberReadHistoryList);
     }

@@ -48,7 +48,9 @@ public class MemberAttentionController {
     @ApiOperation("显示关注列表")
     @RequestMapping(value = "/list/{memberId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<MemberBrandAttention>> list(@PathVariable Long memberId) {
+    public CommonResult<List<MemberBrandAttention>> list(@PathVariable Long memberId
+    ,@RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
         List<MemberBrandAttention> memberBrandAttentionList = memberAttentionService.list(memberId);
         return CommonResult.success(memberBrandAttentionList);
     }
