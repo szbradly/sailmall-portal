@@ -1,12 +1,17 @@
 package com.macro.mall.portal.service.impl;
 
+import java.util.List;
+
+import com.macro.mall.portal.domain.MemberBrandAttention;
 import com.macro.mall.portal.domain.MemberProductCollection;
 import com.macro.mall.portal.repository.MemberProductCollectionRepository;
+import com.macro.mall.portal.repository.SpringDataPageable;
 import com.macro.mall.portal.service.MemberCollectionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 /**
  * 会员收藏Service实现类
@@ -31,6 +36,17 @@ public class MemberCollectionServiceImpl implements MemberCollectionService {
     @Override
     public int deleteProduct(Long memberId, Long productId) {
         return productCollectionRepository.deleteByMemberIdAndProductId(memberId, productId);
+    }
+
+
+    @Override
+    public Page<MemberProductCollection> list(int shopId,int memberId ,int pageNum,int pageSize) {
+        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
+        SpringDataPageable pageable = new SpringDataPageable(); 
+        pageable.setPagenumber(pageNum); 
+        pageable.setPagesize(pageSize);
+        pageable.setSort(sort);
+        return productCollectionRepository.findByShopIdAndMemberId(shopId, memberId, pageable);
     }
 
     @Override

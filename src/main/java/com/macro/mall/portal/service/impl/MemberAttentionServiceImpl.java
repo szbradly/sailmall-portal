@@ -2,11 +2,13 @@ package com.macro.mall.portal.service.impl;
 
 import com.macro.mall.portal.domain.MemberBrandAttention;
 import com.macro.mall.portal.repository.MemberBrandAttentionRepository;
+import com.macro.mall.portal.repository.SpringDataPageable;
 import com.macro.mall.portal.service.MemberAttentionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 /**
  * 会员关注Service实现类
@@ -34,7 +36,12 @@ public class MemberAttentionServiceImpl implements MemberAttentionService {
     }
 
     @Override
-    public List<MemberBrandAttention> list(Long memberId) {
-        return memberBrandAttentionRepository.findByMemberId(memberId);
+    public Page<MemberBrandAttention> list(int shopId,int memberId ,int pageNum,int pageSize) {
+        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
+        SpringDataPageable pageable = new SpringDataPageable(); 
+        pageable.setPagenumber(pageNum); 
+        pageable.setPagesize(pageSize);
+        pageable.setSort(sort);
+        return memberBrandAttentionRepository.findByShopIdAndMemberId(shopId,memberId,pageable);
     }
 }

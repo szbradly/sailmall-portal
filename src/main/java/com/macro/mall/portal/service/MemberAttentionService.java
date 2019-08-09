@@ -2,7 +2,7 @@ package com.macro.mall.portal.service;
 
 import com.macro.mall.portal.domain.MemberBrandAttention;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 /**
  * 会员关注Service
@@ -22,5 +22,5 @@ public interface MemberAttentionService {
     /**
      * 获取用户关注列表
      */
-    List<MemberBrandAttention> list(Long memberId);
+    Page<MemberBrandAttention> list(int shopId,int memberId,int pageNum,int pageSize);
 }
