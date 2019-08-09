@@ -1,9 +1,12 @@
 package com.macro.mall.portal.repository;
 
-import com.macro.mall.portal.domain.MemberBrandAttention;
-import org.springframework.data.mongodb.repository.MongoRepository;
-
 import java.util.List;
+
+import com.macro.mall.portal.domain.MemberBrandAttention;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  * 会员关注Repository
@@ -13,4 +16,6 @@ public interface MemberBrandAttentionRepository extends MongoRepository<MemberBr
     MemberBrandAttention findByMemberIdAndBrandId(Long memberId, Long brandId);
     int deleteByMemberIdAndBrandId(Long memberId,Long brandId);
     List<MemberBrandAttention> findByMemberId(Long memberId);
+    public Page<MemberBrandAttention> findByShopAndMemberId(Integer shopId,Long memberId, Pageable pageable);
+    
 }
