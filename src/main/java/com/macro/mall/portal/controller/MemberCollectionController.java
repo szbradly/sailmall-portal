@@ -1,15 +1,22 @@
 package com.macro.mall.portal.controller;
 
-import com.macro.mall.common.api.CommonResult;
+import java.util.List;
+
+import com.macro.mall.portal.dao.CommonResult;
 import com.macro.mall.portal.domain.MemberProductCollection;
 import com.macro.mall.portal.service.MemberCollectionService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * 会员收藏管理Controller
@@ -46,14 +53,18 @@ public class MemberCollectionController {
         }
     }
 
-    @ApiOperation("显示关注列表")
-    @RequestMapping(value = "/listProduct/{memberId}", method = RequestMethod.GET)
+  
+
+    @ApiOperation("分页显示收藏列表")
+    @RequestMapping(value = "/listByPage", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<MemberProductCollection>> listProduct(@PathVariable Long memberId,
-    
-    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
-        List<MemberProductCollection> memberProductCollectionList = memberCollectionService.listProduct(memberId);
-        return CommonResult.success(memberProductCollectionList);
+    public CommonResult<List<MemberProductCollection>> list(@RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+    int memberId,int shopId
+    ){
+        Page<MemberProductCollection> pageData = memberCollectionService.list(shopId, memberId, pageNum, pageSize);
+       // return  new CommonResult.pageDocSuccess(pageData);
+       CommonResult  <List<MemberProductCollection>>result =new CommonResult<List<MemberProductCollection>> ();
+       return result.pageDocSuccess(pageData);
     }
 }

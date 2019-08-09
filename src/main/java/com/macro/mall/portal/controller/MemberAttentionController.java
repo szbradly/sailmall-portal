@@ -7,6 +7,7 @@ import com.macro.mall.portal.domain.MemberBrandAttention;
 import com.macro.mall.portal.service.MemberAttentionService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,10 +56,13 @@ public class MemberAttentionController {
     @ApiOperation("显示关注列表")
     @RequestMapping(value = "/list/{memberId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<MemberBrandAttention>> list(@PathVariable Long memberId
+    public CommonResult<List<MemberBrandAttention>> list(@PathVariable Integer memberId
     ,@RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
-        List<MemberBrandAttention> memberBrandAttentionList = memberAttentionService.list(memberId);
-        return CommonResult.success(memberBrandAttentionList);
+    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+    Integer shopId) {
+        Page<MemberBrandAttention> pageData = memberAttentionService.list(shopId, memberId, pageNum, pageSize);
+        CommonResult  <List<MemberBrandAttention>>result =new CommonResult<List<MemberBrandAttention>> ();
+       return result.pageDocSuccess(pageData);
     }
+    
 }
