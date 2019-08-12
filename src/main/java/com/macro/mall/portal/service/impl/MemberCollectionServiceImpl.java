@@ -2,7 +2,6 @@ package com.macro.mall.portal.service.impl;
 
 import java.util.List;
 
-import com.macro.mall.portal.domain.MemberBrandAttention;
 import com.macro.mall.portal.domain.MemberProductCollection;
 import com.macro.mall.portal.repository.MemberProductCollectionRepository;
 import com.macro.mall.portal.repository.SpringDataPageable;
