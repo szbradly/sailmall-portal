@@ -1,14 +1,16 @@
 package com.macro.mall.portal.domain;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-
-import java.util.Date;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * 用户收藏的商品
  * Created by macro on 2018/8/2.
  */
+@Document
 public class MemberProductCollection {
     @Id
     private String id;

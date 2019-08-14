@@ -39,13 +39,15 @@ public class MemberCollectionServiceImpl implements MemberCollectionService {
 
 
     @Override
-    public Page<MemberProductCollection> list(int shopId,int memberId ,int pageNum,int pageSize) {
+    public Page<MemberProductCollection> list(int memberId ,int pageNum,int pageSize) {
         Sort sort = new Sort(Sort.Direction.DESC, "createTime");
         SpringDataPageable pageable = new SpringDataPageable(); 
         pageable.setPagenumber(pageNum); 
         pageable.setPagesize(pageSize);
         pageable.setSort(sort);
-        return productCollectionRepository.findByShopIdAndMemberId(shopId, memberId, pageable);
+        Page o = productCollectionRepository.findByMemberId( memberId, pageable);
+        int i=0;
+        return o;
     }
 
     @Override

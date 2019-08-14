@@ -46,7 +46,7 @@ public class CommonResult<T> {
         result.put("list", pageInfo.getContent());
         this.code = SUCCESS;
         this.message = "操作成功";
-        this.data = data;
+        this.data = (T) result;
         return this;
     }
     /**

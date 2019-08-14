@@ -16,5 +16,5 @@ public interface MemberCollectionService {
     int deleteProduct(Long memberId, Long productId);
 
     List<MemberProductCollection> listProduct(Long memberId);
-    public Page<MemberProductCollection> list(int shopId,int memberId ,int pageNum,int pageSize);
+    public Page<MemberProductCollection> list(int memberId ,int pageNum,int pageSize);
 }

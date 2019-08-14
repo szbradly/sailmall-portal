@@ -58,11 +58,11 @@ public class MemberCollectionController {
     @ApiOperation("分页显示收藏列表")
     @RequestMapping(value = "/listByPage", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<MemberProductCollection>> list(@RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-    int memberId,int shopId
+    public CommonResult<List<MemberProductCollection>> list(@RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize,
+    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,int memberId
+  
     ){
-        Page<MemberProductCollection> pageData = memberCollectionService.list(shopId, memberId, pageNum, pageSize);
+        Page<MemberProductCollection> pageData = memberCollectionService.list( memberId, pageNum, pageSize);
        // return  new CommonResult.pageDocSuccess(pageData);
        CommonResult  <List<MemberProductCollection>>result =new CommonResult<List<MemberProductCollection>> ();
        return result.pageDocSuccess(pageData);
