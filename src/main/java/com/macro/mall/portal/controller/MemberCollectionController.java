@@ -59,7 +59,8 @@ public class MemberCollectionController {
     @RequestMapping(value = "/listByPage", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<List<MemberProductCollection>> list(@RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize,
-    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,int memberId
+    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+    @RequestParam(value = "memberId", defaultValue = "1") Integer memberId
   
     ){
         Page<MemberProductCollection> pageData = memberCollectionService.list( memberId, pageNum, pageSize);

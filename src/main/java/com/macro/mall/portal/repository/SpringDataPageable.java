@@ -47,7 +47,7 @@ public class SpringDataPageable implements Serializable, Pageable {
 
     @Override
     public long getOffset() {
-        return 0;
+        return (getPagenumber() - 1) * getPagesize();
     }
 
     @Override

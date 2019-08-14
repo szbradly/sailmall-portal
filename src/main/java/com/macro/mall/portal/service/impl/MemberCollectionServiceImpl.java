@@ -40,7 +40,7 @@ public class MemberCollectionServiceImpl implements MemberCollectionService {
 
     @Override
     public Page<MemberProductCollection> list(int memberId ,int pageNum,int pageSize) {
-        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
         SpringDataPageable pageable = new SpringDataPageable(); 
         pageable.setPagenumber(pageNum); 
         pageable.setPagesize(pageSize);
